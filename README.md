@@ -12,6 +12,11 @@ adverse_data = np.load(ADVERSE_DATA_PATH, allow_pickle=True)
 control_data_val = np.load(CONTROL_VAL_PATH, allow_pickle=True)
 adverse_data_val = np.load(ADVERSE_VAL_PATH, allow_pickle=True)
 ```
+2. Each .npy file must contain a Python dict with exactly these keys:
+  - "fhr_segments" with shape (N, T)
+  - "toco_segments" with shape (N, T)
+
+where N = number of records, T = fixed time-length
 
 ## Result
 ![Model specifications](validation_plot.png)
