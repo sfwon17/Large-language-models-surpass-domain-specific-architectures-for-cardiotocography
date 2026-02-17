@@ -125,18 +125,6 @@ for epoch in range(1, num_epochs + 1):
     optimal_preds = (np.array(all_probs) >= best_threshold).astype(int)
     balanced_acc = balanced_accuracy_score(all_labels, optimal_preds)
 
-    print(
-        f"Epoch {epoch}/{num_epochs} | "
-        f"train_loss {avg_train_loss:.4f} | "
-        f"val_loss {avg_val_loss:.4f} | "
-        f"acc {accuracy:.4f} | "
-        f"auc {auc:.4f} | "
-        f"sens {sensitivity:.4f} | "
-        f"spec {specificity:.4f} | "
-        f"thr {best_threshold:.4f} | "
-        f"bal_acc {balanced_acc:.4f}"
-    )
-
     if auc > best_auc:
         best_auc = auc
         patience_counter = 0
