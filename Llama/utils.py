@@ -1,3 +1,16 @@
+import os
+import csv
+import numpy as np
+from datetime import datetime
+from scipy.special import softmax
+from sklearn.metrics import (
+    accuracy_score,
+    f1_score,
+    recall_score,
+    roc_auc_score,
+    confusion_matrix,
+)
+
 def downsample_4hz_to_1hz(data_array):
     n_samples, n_timesteps = data_array.shape
     trimmed_timesteps = (n_timesteps // 4) * 4
@@ -33,15 +46,14 @@ def remove_trailing_nans(signal):
     return signal[: last_valid_idx + 1]
 
 
-def tokenize_function(examples):
+def tokenize_function(examples, tokenizer, max_length=2500):
     tokenized = tokenizer(
         examples["text"],
         truncation=True,
-        max_length=2500,
+        max_length=max_length,
     )
     tokenized["labels"] = examples["label"]
     return tokenized
-
 
 def compute_metrics_factory(threshold=0.5):
     def compute_metrics(eval_pred):
