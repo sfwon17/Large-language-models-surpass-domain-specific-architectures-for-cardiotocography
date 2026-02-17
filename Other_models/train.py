@@ -14,17 +14,17 @@ np.random.seed(seed)
 torch.manual_seed(seed)
 torch.cuda.manual_seed_all(seed)
 
-control_downsampled_fhr = downsample_4hz_to_half_hz(control_data.item()["fhr_segments"])
-control_downsampled_toco = downsample_4hz_to_half_hz(control_data.item()["toco_segments"])
+control_downsampled_fhr = downsample_4hz_to_1hz(control_data.item()["fhr_segments"])
+control_downsampled_toco = downsample_4hz_to_1hz(control_data.item()["toco_segments"])
 
-adverse_downsampled_fhr = downsample_4hz_to_half_hz(adverse_data.item()["fhr_segments"])
-adverse_downsampled_toco = downsample_4hz_to_half_hz(adverse_data.item()["toco_segments"])
+adverse_downsampled_fhr = downsample_4hz_to_1hz(adverse_data.item()["fhr_segments"])
+adverse_downsampled_toco = downsample_4hz_to_1hz(adverse_data.item()["toco_segments"])
 
-adverse_downsampled_fhr_val = downsample_4hz_to_half_hz(adverse_data_val.item()["fhr_segments"])
-control_downsampled_fhr_val = downsample_4hz_to_half_hz(control_data_val.item()["fhr_segments"])
+adverse_downsampled_fhr_val = downsample_4hz_to_1hz(adverse_data_val.item()["fhr_segments"])
+control_downsampled_fhr_val = downsample_4hz_to_1hz(control_data_val.item()["fhr_segments"])
 
-adverse_downsampled_toco_val = downsample_4hz_to_half_hz(adverse_data_val.item()["toco_segments"])
-control_downsampled_toco_val = downsample_4hz_to_half_hz(control_data_val.item()["toco_segments"])
+adverse_downsampled_toco_val = downsample_4hz_to_1hz(adverse_data_val.item()["toco_segments"])
+control_downsampled_toco_val = downsample_4hz_to_1hz(control_data_val.item()["toco_segments"])
 
 fhr_train = np.concatenate([control_downsampled_fhr, adverse_downsampled_fhr], axis=0)
 toco_train = np.concatenate([control_downsampled_toco, adverse_downsampled_toco], axis=0)
@@ -59,8 +59,8 @@ batch_size = 32
 train_dataset = CTGDataset(fhr_train, toco_train, labels_train)
 val_dataset = CTGDataset(fhr_val, toco_val, labels_val)
 
-train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=4, pin_memory=True)
-val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=4, pin_memory=True)
+train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=8)
+val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=8)
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 model = create_seresnet152d_model(num_classes=2, dropout=0.1)
@@ -69,8 +69,8 @@ model = model.to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=1e-3)
   
-best_auc = 0.0
-patience = 3
+best_auc = 0.0 # or loss 
+patience = 3 # or 5
 patience_counter = 0
 num_epochs = 100
 
