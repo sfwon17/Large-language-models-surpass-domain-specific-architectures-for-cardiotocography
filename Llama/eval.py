@@ -71,12 +71,10 @@ def main():
 
     control_dict = np.load(args.control_val, allow_pickle=True).item()
     adverse_dict = np.load(args.adverse_val, allow_pickle=True).item()
-
-    # use utils to build records (replaces the four loops)
     control_records = build_dataset_records(control_dict["fhr_segments"], control_dict["toco_segments"], label=0)
     adverse_records = build_dataset_records(adverse_dict["fhr_segments"], adverse_dict["toco_segments"], label=1)
 
-    # create evaluation dataset from both control + adverse validation sets
+    # create evaluation dataset 
     records = adverse_records + control_records
     dataset_eval = Dataset.from_list(records)
 
