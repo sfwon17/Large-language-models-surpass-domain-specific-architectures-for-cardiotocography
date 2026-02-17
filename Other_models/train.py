@@ -6,7 +6,7 @@ import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 from tqdm import tqdm
 from sklearn.metrics import accuracy_score, roc_auc_score, confusion_matrix, roc_curve, balanced_accuracy_score
-from models.seresnet152d import create_seresnet152d_model
+from models.seresnet import create_seresnet152d_model
 from utils import *
 
 seed = 42
