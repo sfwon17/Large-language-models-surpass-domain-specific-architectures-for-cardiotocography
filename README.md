@@ -5,7 +5,13 @@ In this study, we present the first comprehensive benchmark of state-of-the-art 
 This repository provides example code for fine-tuning Llama models that achieved the best performance. It also includes additional examples, such as the complete instruction set used with GPT-5 mini. The code can be used in conjunction with your antepartum dataset for evaluation purposes. Other publicly available models may be evaluated using their respective codebases, which are accessible online. Please refer to the publication for further details. 
 
 ## Instruction
-1. 
+1. Your training script expects four NumPy files with these exact variable names when loaded:
+```
+control_data = np.load(CONTROL_DATA_PATH, allow_pickle=True)
+adverse_data = np.load(ADVERSE_DATA_PATH, allow_pickle=True)
+control_data_val = np.load(CONTROL_VAL_PATH, allow_pickle=True)
+adverse_data_val = np.load(ADVERSE_VAL_PATH, allow_pickle=True)
+```
 
 ## Result
 ![Model specifications](validation_plot.png)
