@@ -9,10 +9,22 @@ from sklearn.metrics import accuracy_score, roc_auc_score, confusion_matrix, roc
 from models.seresnet import create_seresnet152d_model
 from utils import *
 
+# simplified 
+
 seed = 42
 np.random.seed(seed)
 torch.manual_seed(seed)
 torch.cuda.manual_seed_all(seed)
+
+CONTROL_DATA_PATH = "control_data.npy"
+ADVERSE_DATA_PATH = "adverse_data.npy"
+CONTROL_VAL_PATH = "control_val.npy"
+ADVERSE_VAL_PATH = "adverse_val.npy"
+
+control_data = np.load(CONTROL_DATA_PATH, allow_pickle=True)
+adverse_data = np.load(ADVERSE_DATA_PATH, allow_pickle=True)
+control_data_val = np.load(CONTROL_VAL_PATH, allow_pickle=True)
+adverse_data_val = np.load(ADVERSE_VAL_PATH, allow_pickle=True)
 
 control_downsampled_fhr = downsample_4hz_to_1hz(control_data.item()["fhr_segments"])
 control_downsampled_toco = downsample_4hz_to_1hz(control_data.item()["toco_segments"])
@@ -20,11 +32,11 @@ control_downsampled_toco = downsample_4hz_to_1hz(control_data.item()["toco_segme
 adverse_downsampled_fhr = downsample_4hz_to_1hz(adverse_data.item()["fhr_segments"])
 adverse_downsampled_toco = downsample_4hz_to_1hz(adverse_data.item()["toco_segments"])
 
-adverse_downsampled_fhr_val = downsample_4hz_to_1hz(adverse_data_val.item()["fhr_segments"])
 control_downsampled_fhr_val = downsample_4hz_to_1hz(control_data_val.item()["fhr_segments"])
-
-adverse_downsampled_toco_val = downsample_4hz_to_1hz(adverse_data_val.item()["toco_segments"])
 control_downsampled_toco_val = downsample_4hz_to_1hz(control_data_val.item()["toco_segments"])
+
+adverse_downsampled_fhr_val = downsample_4hz_to_1hz(adverse_data_val.item()["fhr_segments"])
+adverse_downsampled_toco_val = downsample_4hz_to_1hz(adverse_data_val.item()["toco_segments"])
 
 fhr_train = np.concatenate([control_downsampled_fhr, adverse_downsampled_fhr], axis=0)
 toco_train = np.concatenate([control_downsampled_toco, adverse_downsampled_toco], axis=0)
