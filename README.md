@@ -16,7 +16,22 @@ adverse_data_val = np.load(ADVERSE_VAL_PATH, allow_pickle=True)
   - "fhr_segments"
   - "toco_segments" with shape (N, T) where N = number of records, T = fixed time-length
 
-## Result
+## Converting Tensor/Numpy data to Text
+### Tensor Input
+
+```
+fhr = [120.0 121.5 -1.0 118.2]
+```
+
+### Code
+```
+text_fhr = " ".join(map(str, fhr))
+```
+
+### Text Output
+```
+120.0 121.5 -1.0 118.2
+```
 
 ## Notes
 1. The study and dataset are intended for antepartum evaluation, specifically for CTG recordings obtained prior to the onset of labor. Model performance may differ in the intrapartum setting.
