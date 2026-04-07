@@ -20,7 +20,7 @@ adverse_data_val = np.load(ADVERSE_VAL_PATH, allow_pickle=True)
 ### Tensor Input
 
 ```
-fhr = [120.0 121.5 -1.0 118.2]
+fhr = [120 121 -1.0 118]
 ```
 
 ### Code
@@ -30,7 +30,7 @@ text_fhr = " ".join(map(str, fhr))
 
 ### Text Output
 ```
-120.0 121.5 -1.0 118.2
+'120 121 -1.0 118'
 ```
 
 ## Notes
