@@ -17,7 +17,6 @@ adverse_data_val = np.load(ADVERSE_VAL_PATH, allow_pickle=True)
   - "toco_segments" with shape (N, T) where N = number of records, T = fixed time-length
 
 ## Result
-![Model specifications](validation_plot.png)
 
 ## Notes
 1. The study and dataset are intended for antepartum evaluation, specifically for CTG recordings obtained prior to the onset of labor. Model performance may differ in the intrapartum setting.
