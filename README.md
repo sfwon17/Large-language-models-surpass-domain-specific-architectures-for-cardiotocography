@@ -20,7 +20,7 @@ adverse_data_val = np.load(ADVERSE_VAL_PATH, allow_pickle=True)
 ### Tensor Input
 
 ```
-fhr = [120 121 -1.0 118]
+fhr = [120,121,-1.0,118]
 ```
 
 ### Code
