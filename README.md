@@ -1,5 +1,5 @@
-# Large-language-models-surpass-domain-specific-architectures-for-cardiotocography
-In this study, we present the first comprehensive benchmark of state-of-the-art architectures for automated antepartum CTG classification. Over 2,500 20-minutes recordings were used to evaluate over 15 models spanning domain-specific, time-series, foundation, and language-model categories under a unified framework. 
+# Large language models surpass domain specific architectures for cardiotocography
+In this study, we present the first comprehensive benchmark of state-of-the-art architectures for automated antepartum CTG classification. Over 50,000 minutes recordings were used to evaluate over 15 models spanning domain-specific, time-series, foundation, and language-model categories under a unified framework. 
 
 ## Overview 
 This repository provides example code for fine-tuning Llama models which achieved the best average performance. It also includes additional examples, such as the complete instruction set used with GPT-5 mini. The code can be used in conjunction with your antepartum dataset for evaluation purposes. Other publicly available models may be evaluated using their respective codebases, which are accessible online. Please refer to the publication for further details.
