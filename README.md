@@ -1,10 +1,10 @@
-# Large language models surpass domain specific architectures for cardiotocography
-In this study, we present the first comprehensive benchmark of state-of-the-art architectures for automated antepartum CTG classification. Over 50,000 minutes recordings were used to evaluate over 15 models spanning domain-specific, time-series, foundation, and language-model categories under a unified framework. 
+# 🚀 Large language models surpass domain specific architectures for cardiotocography
+In this study, we present the first comprehensive benchmark of state-of-the-art architectures for automated antepartum CTG classification. Over 50,000 minutes recordings were used to evaluate over 15 models spanning domain-specific, time-series, foundation, and language-model categories under a unified framework. We found that fine-tuning langugae models with QLoRA (Quantized Low-Rank Adaptation) for antepartum CTG classification significantly outperforming domain-specific and traditional models. Link: 
 
-## Overview 
+## ℹ️ Overview 
 This repository provides example code for fine-tuning Llama models which achieved the best average performance. It also includes additional examples, such as the complete instruction set used with GPT-5 mini. The code can be used in conjunction with your antepartum dataset for evaluation purposes. Other publicly available models may be evaluated using their respective codebases, which are accessible online. Please refer to the publication for further details.
 
-## Instruction
+## ✍️ Instruction
 1. Your training script expects four NumPy files with these exact variable names when loaded:
 ```
 control_data = np.load(CONTROL_DATA_PATH, allow_pickle=True)
@@ -33,7 +33,7 @@ text_fhr = " ".join(map(str, fhr))
 '120 121 -1.0 118'
 ```
 
-## Notes
+## ⚠️ Notes
 1. The study and dataset are intended for antepartum evaluation, specifically for CTG recordings obtained prior to the onset of labor. Model performance may differ in the intrapartum setting.
 2. The study was conducted using CTG data split at the patient level to prevent data leakage. We strongly encourage users to include as many unique patients as possible. Our training set comprises more than 3,000 distinct patients.
 3. Due to the input representation requirements of Llama models, the time-series data are formatted as textual sequences rather than processed in a conventional numerical time-series format.
